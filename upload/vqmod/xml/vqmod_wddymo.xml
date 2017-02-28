@@ -11,7 +11,7 @@
             <add>
                 <![CDATA[
                     <input type="hidden" value="<?php echo $wddymo_link;?>" id="wddymo-link" />
-                    <button type="button" id="button-wd-label" data-toggle="tooltip" title="<?php echo $wddymo_button; ?>" class="btn btn-info"><i class="fa fa-tag"></i></button>
+                    <button type="button" data-toggle="tooltip" title="<?php echo $wddymo_button; ?>" class="btn btn-info button-wd-label"><i class="fa fa-tag"></i></button>
                 ]]>
             </add>
         </operation>
@@ -82,7 +82,7 @@
             </search>
             <add>
                 <![CDATA[
-                    <button type="button" id="button-wd-label" data-toggle="tooltip" title="<?php echo $wddymo_button; ?>" class="btn btn-info btn-sm hidden-print"><i class="fa fa-tag"></i> Print label</button>
+                    <button type="button" data-toggle="tooltip" title="<?php echo $wddymo_button; ?>" class="btn btn-info btn-sm hidden-print button-wd-label"><i class="fa fa-tag"></i> Print label</button>
                     <form style="display: none;">
                         <input name="selected[]" type="checkbox" value="<?php echo $order['order_id']; ?>" checked="checked" />
                     </form>

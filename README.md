@@ -37,7 +37,6 @@ Another quote:
  - Write Tests
  - Minify JavaScript files
  - Make the loading of printers more dynamic
- - Print multiple labels at once
  - Maybe make the extension compatible with other eCommerce platforms?
 
 ### Version

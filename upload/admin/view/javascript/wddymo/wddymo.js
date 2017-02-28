@@ -9,11 +9,12 @@ $(document).ready(function () {
     var label = null;
 
     //check if print button and link are defined
-    if ($('button#button-wd-label').length > 0 && $('input#wddymo-link').length > 0) {
+    if ($('button.button-wd-label').length > 0 && $('input#wddymo-link').length > 0) {
         //register click event
-        $('button#button-wd-label').click(function () {
-            printLabel();
+        $('button.button-wd-label').click(function () {
+            printLabel(this);
         });
+
         //load setttings
         loadPrinter();
         loadLabel();
@@ -58,9 +59,8 @@ $(document).ready(function () {
 
     /**
      * Starts the print action if a printer is present and if a .label file is loaded.
-     * The first selected order checkbox will be the target order.
      */
-    function printLabel() {
+    function printLabel(calledElement) {
         if (!mainPrinter) {
             console.log('No printer available.');
             return;
@@ -71,22 +71,25 @@ $(document).ready(function () {
             return;
         } else {
             var orderIds = [];
-            //check each checkbox in the list of orders
-            $('form').each(function(){
-                $('input[type="checkbox"]', this).each(function () {
-                    //check if this checkbox is checked
-                    if ($(this).is(':checked')) {
-                        //if this checkbox has a integer as value (an order id)
-                        //else it's probably the first checkbox to check all orders...
-                        var id = parseInt(this.value);
-                        if (id > 0) {
-                            orderIds.push(id);
-                        }
+
+            //get nearest form (in case of multiple forms, such as invoice lists)
+            var firstForm = $(calledElement).next('form:first');
+            if (firstForm.length == 0) {
+                firstForm = $('form:first');
+            }
+
+            //get all checked checkboxes in the form
+            $('input[type="checkbox"]', firstForm).each(function () {
+                //check if this checkbox is checked
+                if ($(this).is(':checked')) {
+                    //if this checkbox has a integer as value (an order id)
+                    //else it's probably the first checkbox to check all orders...
+                    var id = parseInt(this.value);
+                    if (id > 0) {
+                        orderIds.push(id);
                     }
-                });
+                }
             });
-
-
 
             if (orderIds.length > 0) {
                 //the link is set in a hidden input field generated in vqmod_wd_dymo.xml
@@ -96,13 +99,14 @@ $(document).ready(function () {
                     }
                 ).done(function (data) {
                     var addresses = JSON.parse(data);
-                    //TODO: test multiple addresses, now only the first one:
                     if (addresses.length == 0) {
                         console.log("Did not receive any order data")
                     } else {
-                        setAddress(addresses[0]);
-                        //Dymo label SDK function
-                        label.print(mainPrinter.name);
+                        $.each(addresses, function (index, address) {
+                            setAddress(address);
+                            //Dymo label SDK function
+                            label.print(mainPrinter.name);
+                        });
                     }
                 }, "json");
             }

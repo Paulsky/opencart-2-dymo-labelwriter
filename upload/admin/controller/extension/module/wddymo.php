@@ -98,6 +98,14 @@ class ControllerExtensionModuleWddymo extends Controller
     }
 
 
+    private function getPostCode($string)
+    {
+        $code = str_split($this->allUpperCase(str_replace(' ', '', $string)), 4);
+        $postcode = $code[0].' '.$code[1];
+        return $postcode;
+    }
+
+
     private function allUpperCase($string)
     {
         $string = strtoupper($string);
