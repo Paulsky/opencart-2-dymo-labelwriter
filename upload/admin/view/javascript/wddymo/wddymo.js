@@ -1,5 +1,10 @@
 /**
  * Created by Paul Wijnberg on 8-3-2015.
+ * http://labelwriter.com/software/dls/sdk/js/DYMO.Label.Framework.3.0.js
+ * http://developers.dymo.com/2016/08/08/dymo-label-web-service-faq/
+ * http://developers.dymo.com/2018/05/29/updated-js-sdk-and-dls/
+ * http://developers.dymo.com/2015/09/24/dymo-label-framework-javascript-library-2-0-open-beta-2/
+ * http://www.labelwriter.com/software/dls/sdk/samples/js/PrintLabel/PrintLabel.html
  */
 $(document).ready(function () {
 

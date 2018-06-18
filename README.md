@@ -8,13 +8,15 @@ Note the following:
 * This extension is **not** tested thoroughly
 * This extension is only tested in OpenCart **2.3**
 * This extension is only tested with a **Dymo LabelWriter 450**
-* This extension is only tested on **Windows 10 with Internet Explorer 11 (- succeeded) and Google Chrome (- failed)**
+* This extension is only tested on **Windows 10 with Internet Explorer 11 (- succeeded) and Google Chrome 67 (- succeeded)**
+* Please check on [this demo page](http://www.labelwriter.com/software/dls/sdk/samples/js/PrintLabel/PrintLabel.html) if you can print a label through your browser
 
 ### Dependencies
 
 This extension depends on the following frameworks/SDK's/modules
 
 * An installed and connected Dymo LabelWriter or a configured (fake) Dymo LabelWriter driver
+* [DLS] DYMO Label Software v8.7.2
 * [VQMod] 2.4
 * [jQuery] 2.1.1 (already used in the backend of OpenCart 2.3)
 * [Dymo Label Framework SDK]
@@ -26,11 +28,7 @@ This extension depends on the following frameworks/SDK's/modules
 
 ### Known Issues
 
-At this moment the extension only works in Internet Explorer. A while ago, with a different version of Google Chrome, this code worked. Some comments and problems are described here: http://developers.dymo.com/2010/06/02/dymo-label-framework-javascript-library-samples-print-a-label/ . But again, this extension is not tested, for example, on Mac or/and Safari. Quote from the comments:
-> There are plans to add Firefox/Chrome support on Mac in the upcoming DLS 8.3 release. But there is no guarantee…
-
-Another quote: 
-> I assume you are referring to Chrome on Mac OS X. Now, Chrome version 22 and above have dropped support for Carbon event model of NPAPI plugins. This model event is default for 32-bit plugins and that’s why it can’t load the DYMO plugin. We have to write a new plugin which is anticipated for DLS 8.5.0.
+At this moment there are no known issues. Please let us know if you have any problems with the module!
 
 ### Todo's
 
@@ -40,11 +38,11 @@ Another quote:
  - Maybe make the extension compatible with other eCommerce platforms?
 
 ### Version
-1.0.0 Beta
+1.1.0 Beta
 
 ### Contribute
 
-Want to contribute? Be my guest and fork this project! Let me know all your requests and suggestions!
+Want to contribute? Be my guest and fork this project or create a pull request! Let me know all your requests and suggestions!
 
 ### License
 
@@ -54,3 +52,4 @@ MIT
 [jQuery]:http://jquery.com
 [VQMod]: https://github.com/vqmod/vqmod
 [OpenCart Dymo LabelWriter 1.5.6]: https://github.com/Paulsky/opencart-dymo-labelwriter
+[DLS]: http://www.dymo.com/en-GB/online-support/dymo-user-guides
