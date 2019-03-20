@@ -8,18 +8,31 @@ class ControllerExtensionModuleWddymo extends Controller
 
     public function index()
     {
+
+        $token = '';
+        if(isset($_GET['token'])){
+            $token = $_GET['token'];
+        }
+
+        $redirect = isset($this->request->server['HTTP_REFERER']) ? $this->request->server['HTTP_REFERER'] : '/admin/index.php?token='.$token;
+
         /* Load language file. */
         $this->load->language('extension/module/wddymo');
 
         if ( ! $this->request->server['REQUEST_METHOD'] == 'POST') {
-            return $this->response->redirect($this->request->server['HTTP_REFERER']);
+            return $this->response->redirect($redirect);
         }
 
-        $ids = $this->request->post['selected'];
+        $ids = [];
 
-        if ( ! isset($ids)) {
-            return $this->response->redirect($this->request->server['HTTP_REFERER']);
+        if (isset($this->request->post['selected'])) {
+            $ids = $this->request->post['selected'];
         }
+
+        if (count($ids) == 0) {
+            return $this->response->redirect($redirect);
+        }
+
         //load Order Model
         $this->load->model('sale/order');
 
@@ -98,12 +111,13 @@ class ControllerExtensionModuleWddymo extends Controller
     }
 
 
-    private function getPostCode($string)
-    {
-        $code = str_split($this->allUpperCase(str_replace(' ', '', $string)), 4);
-        $postcode = $code[0].' '.$code[1];
-        return $postcode;
-    }
+    //private function getPostCode($string)
+    //{
+    //    $code = str_split($this->allUpperCase(str_replace(' ', '', $string)), 4);
+    //    $postcode = $code[0].' '.$code[1];
+    //
+    //    return $postcode;
+    //}
 
 
     private function allUpperCase($string)
